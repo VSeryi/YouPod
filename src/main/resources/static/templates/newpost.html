@@ -1,0 +1,43 @@
+<div ng-controller="NewPostController as vm">
+
+	<div class="toolbar">
+		<div class="toolbar__left mr">
+            <a href="/#/" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <i class="mdi mdi--arrow-back"></i>
+            </a>
+        </div>
+	
+		<span class="toolbar__label fs-title">New post</span>
+	</div>
+
+<div class="content">
+
+	<form ng-submit="vm.addPost(vm.newPost)">
+
+		<div class="grid">
+			<lx-text-field label="Name"> 
+				<input type="text" ng-model="vm.newPost.name"> 
+			</lx-text-field>
+		</div>
+
+		<div class="grid">
+			<lx-text-field label="Title"> 
+				<input type="text" ng-model="vm.newPost.title"> 
+			</lx-text-field>
+		</div>
+
+		<div class="grid">
+			<lx-text-field label="Text" type="area" model="vm.newPost.text"> 
+				<textarea type="text" ng-model="vm.newPost.text"></textarea> 
+			</lx-text-field>
+		</div>
+
+		<div class="grid">
+			<button type="submit" class="btn btn--m btn--blue btn--raised"
+				lx-ripple style="float: right; margin-top: 2em;">New Post</button>
+		</div>
+
+	</form>
+
+</div>
+</div>

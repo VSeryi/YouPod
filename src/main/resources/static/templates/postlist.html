@@ -1,0 +1,39 @@
+<div ng-controller="PostListController as vm" layout="column" layout-fill>
+	
+	<div class="toolbar">
+		<span class="toolbar__label fs-title">Blog</span>
+		
+		<div class="toolbar__right mr">
+            <a href="" ng-click="vm.reload()" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <i class="mdi mdi--refresh"></i>
+            </a>
+        </div>
+		
+	</div>
+
+	<div class="content">
+
+	<div id="new-blog-button">
+		<a href="#/newpost" class="btn btn--xl btn--red btn--fab" lx-ripple>
+			<i class="mdi mdi--add"></i>
+		</a>
+	</div>
+
+	<div ng-hide="vm.posts && vm.posts.length > 0" style="margin:20px">There are no posts yet.</div>
+
+	<ul class="list">
+		<li class="list-row list-row--has-primary list-row--has-separator" ng-repeat="post in vm.posts">
+			<a href="/#/post/{{post.id}}">
+				<div class="list-primary-tile">
+                     <i class="icon icon--l icon--blue icon--circled mdi mdi--insert-drive-file"></i>
+                </div>
+				<div class="list-content-tile list-content-tile--two-lines">
+					<strong>{{post.title}}</strong>
+					<span>{{post.name}}</span>
+				</div>
+			</a>
+		</li>
+	</ul>
+    
+    </div>
+</div>

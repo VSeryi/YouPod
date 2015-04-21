@@ -1,0 +1,25 @@
+<div ng-controller="PostController as vm">
+
+	<div class="toolbar">
+		<div class="toolbar__left mr">
+            <a href="/#/" class="btn btn--l btn--white btn--icon" lx-ripple>
+                <i class="mdi mdi--arrow-back"></i>
+            </a>
+        </div>
+	
+		<span class="toolbar__label fs-title">Post</span>
+	</div>
+
+<div class="content">
+
+	<h1>{{vm.post.title}}</h1>
+	<p>By {{vm.post.name}}</p>
+	<p>{{vm.post.text}}</p>
+	
+	<div class="grid">
+		<a href="" type="submit" class="btn btn--m btn--blue btn--raised"
+			lx-ripple style="float: right; margin-top: 2em;" ng-click="vm.deletePost(vm.post)">Delete</a>
+	</div>
+</div>
+	
+</div>
