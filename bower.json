@@ -1,0 +1,8 @@
+{
+	"name": "youpod",
+	"dependencies": {
+		"lumx": "0.2.27",
+		"bootstrap-material-design": "0.3.0";
+		"satellizer": "0.10.1";
+	}
+}
