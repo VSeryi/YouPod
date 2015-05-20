@@ -4,15 +4,11 @@ blogManager.$inject = [ "$resource", "$timeout" ];
 
 function blogManager($resource, $timeout) {
 
-	var PostResource = $resource('/posts/:id', {
-		id : '@id'
-	}, {
-		update : {
-			method : "PUT"
-		}
-	});
+	var PostResource = $resource('/users/:id', {
+		id : '@id'});
+	
 
-	var posts = [];
+	var users = [];
 
 	function autoreload(){
 		reload();
@@ -50,9 +46,9 @@ function blogManager($resource, $timeout) {
 		}
 	}
 
-	function newPost(newPost) {
-		new PostResource(newPost).$save(function(post) {
-			posts.push(post);
+	function addUser (newUser) {
+		new UserResource(newUser).$save(function(user) {
+			users.push(user);
 		});
 	}
 

@@ -1,17 +1,20 @@
 angular.module("app").controller("SignupController", SignupController);
 
-SignupController.$inject = ["$resource","$scope", "$auth"];
+SignupController.$inject = ["$resource","$scope", "$auth","blogmanager"];
 
 function SignupController($resource,$scope, $auth) {
 
 	var vm = this;
+	
+	var users = [];
 	
 	//View model properties
 	vm.link = "";
 	vm.downloading = false;
 	vm.loading = false;
 	vm.loaded = false;
-		
+	vm.newUser = {};
+	
 	//Controller logic
 	
 	$scope.authenticate = function(provider) {
@@ -30,5 +33,11 @@ function SignupController($resource,$scope, $auth) {
 			vm.loading = true;
 			vm.loaded = true;
 		});
+	};
+	
+	vm.addUser = function (newUser) {
+		blogmanager.newUser(newUser);
+		vm.newUser = {};
+		$location.path("/");
 	};
 };
