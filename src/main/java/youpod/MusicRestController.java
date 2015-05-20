@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,6 +49,9 @@ public class MusicRestController {
                         }
                 }
         }
+        boolean error;
+        do{
+        error = false;
 		URL urlDownload = new URL(
 				"http://youtubeinmp3.com/fetch/?api=advanced&format=JSON&video="
 						+ youtubeLink);
@@ -67,13 +71,16 @@ public class MusicRestController {
 		      JSONObject snippet = (JSONObject)((JSONObject) videoData.get(0)).get("snippet");
 		      String title = (String) snippet.get("title");
 		      String description = (String) snippet.get("description");
-		      JSONObject thumbail = (JSONObject)((JSONObject) snippet.get("thumbnails")).get("default");
+		      JSONObject thumbail = (JSONObject)((JSONObject) snippet.get("thumbnails")).get("high");
 		      String url = (String) thumbail.get("url");
 			  music = new Music(title, description, url, link);
-		    } finally {
+		    } catch (JSONException e){
+		    	error = true;
+		    }finally {
 		    	isDownload.close();
 		    	isInfo.close();
 		    }
+		}while(error);
 		return music;
 	}
 

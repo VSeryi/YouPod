@@ -383,6 +383,7 @@ video {
   top: 50%;
   left: 50%;*/
 	margin: auto;
+	margin-top: 14%;
 	width: 70%; /*
   transform: translate(-50%, -50%);*/
 }
@@ -616,7 +617,8 @@ video {
 	font-size: 48px;
 	letter-spacing: 5px;
 	display: inline-block;
-	color: #202020;
+	color: #fff;
+	text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
 }
 
 #heading h2 {
@@ -625,7 +627,8 @@ video {
 	display: inline-block;
 	opacity: 0.5;
 	margin-left: 10px;
-	color: #202020;
+	color: #fff;
+	text-shadow: 0px 0px 30px rgba(0, 0, 0, 1);
 }
 
 #heading h2:before {
@@ -751,11 +754,12 @@ article.portfolio .image:hover:after {
 }
 
 article.portfolio .inner {
-	padding: 20px 40px;
+	padding: 0px;
 }
 
 article.portfolio h3 {
 	font-size: 24px;
+	text-align:center;
 }
 
 @media ( max-width : 991px) {
@@ -843,6 +847,93 @@ article.portfolio h3 {
 		width: 100%;
 	}
 }
+
+/*==========================================================*/
+/* Personal profiles
+/*==========================================================*/
+.personal-profiles {
+  margin-top: -40px;
+}
+.personal-profiles > article {
+  margin-top: 40px;
+}
+article.personal-profile > div {
+  height: 350px;
+  width: 50%;
+}
+article.personal-profile .image {
+  float: left;
+  position: relative;
+  padding-top: 0;
+}
+.personal-profiles > article.personal-profile:nth-child(4n+3) > .image,
+.personal-profiles > article.personal-profile:nth-child(4n+4) > .image {
+  float: right;
+}
+article.personal-profile .image:after {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  content: '';
+  opacity: 0;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+article.personal-profile .image:hover:after {
+  opacity: 1;
+}
+article.personal-profile .image .icons {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  font-size: 36px;
+  line-height: 40px;
+  top: 40%;
+  left: 0;
+  margin-top: -25px;
+  opacity: 0;
+  z-index: 1;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+article.personal-profile .image:hover .icons {
+  opacity: 1;
+  top: 50%;
+}
+article.personal-profile .image .icons a {
+  width: 40px;
+  text-align: center;
+  font-size: 36px;
+  line-height: 50px;
+  color: #FFFFFF;
+  opacity: 0.5;
+}
+article.personal-profile .image .icons a:hover {
+  opacity: 1;
+}
+article.personal-profile .inner {
+  overflow-y: auto;
+}
+article.personal-profile .inner h4 {
+  font-size: 16px;
+  opacity: 0.5;
+  margin-top: 10px;
+}
+/* Responsive */
+@media (max-width: 991px) {
+  article.personal-profile > div {
+    height: auto;
+    width: 100%;
+  }
+  article.personal-profile .image {
+    float: none;
+    padding-top: 100%;
+  }
+}
+
 /*==========================================================*/
 /* Services
 /*==========================================================*/
@@ -1312,4 +1403,14 @@ article.portfolio h3 {
 	.col-1 {
 		width: 8.33333333%;
 	}
+	
+	/*==========================================================*/
+/* Map
+/*==========================================================*/
+iframe {
+  margin-bottom: 0 !important;
+  border: none !important;
+  display: block;
+}
+	
 }
