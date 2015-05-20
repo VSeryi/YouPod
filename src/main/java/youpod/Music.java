@@ -12,17 +12,16 @@ package youpod;
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Integer id;
 		
-		private String name;
+		private String thumbail;
 		private String title;
-		private String text;
+		private String description;
+		private String download;
 
-		public Music() {
-		}
-
-		public Music(String name, String title, String text) {
-			this.name = name;
+		public Music(String title, String description, String thumbail, String download) {
+			this.thumbail = thumbail;
 			this.title = title;
-			this.text = text;
+			this.description = description;
+			this.download = download;
 		}
 
 		public Integer getId() {
@@ -33,12 +32,12 @@ package youpod;
 			this.id = id;
 		}
 
-		public String getName() {
-			return name;
+		public String getThumbail() {
+			return thumbail;
 		}
 
-		public void setName(String name) {
-			this.name = name;
+		public void setThumbail(String thumbail) {
+			this.thumbail = thumbail;
 		}
 
 		public String getTitle() {
@@ -49,17 +48,25 @@ package youpod;
 			this.title = title;
 		}
 
-		public String getText() {
-			return text;
+		public String getDescription() {
+			return description;
 		}
 
-		public void setText(String text) {
-			this.text = text;
+		public void setDescription(String description) {
+			this.description = description;
+		}	
+
+		public String getDownload() {
+			return download;
+		}
+
+		public void setDownload(String download) {
+			this.download = download;
 		}
 
 		@Override
 		public String toString() {
-			return "Post [id=" + id + ", name=" + name + ", title=" + title
-					+ ", text=" + text + "]";
+			return "Post [id=" + id + ", name=" + thumbail + ", title=" + title
+					+ ", text=" + description + "]";
 		}
 	}

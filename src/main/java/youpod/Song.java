@@ -1,4 +1,4 @@
-package blog;
+package youpod;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

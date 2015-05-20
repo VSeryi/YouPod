@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title>jQuery Transit tests</title>
-  <script>
+<meta charset="UTF-8" />
+<title>jQuery Transit tests</title>
+<script>
     /*
      * Dynamic script loading
      */
@@ -26,32 +26,31 @@
       addScript("../jquery.transit.js");
     })();
   </script>
-  
-  <script src="test.js"></script>
-  <link href="style.css" rel="stylesheet" />
+
+<script src="test.js"></script>
+<link href="style.css" rel="stylesheet" />
 </head>
 <body>
-  <div class='use'>
-    Use:
-    <a href='index.html?jquery=2.0.3'>jQ 2.0.3</a>
-    <a href='index.html?jquery=1.9.0b1'>jQ 1.9.0b1</a>
-    <a href='index.html?jquery=1.8.1'>jQ 1.8</a>
-    <a href='index.html?jquery=1.7.0'>jQ 1.7</a>
-    <a href='index.html?jquery=1.6.0'>jQ 1.6</a>
-    <a href='index.html?jquery=1.5.0'>jQ 1.5</a>
-    <button class='play-all'>Play all</button>
-  </div>
+	<div class='use'>
+		Use: <a href='index.html?jquery=2.0.3'>jQ 2.0.3</a> <a
+			href='index.html?jquery=1.9.0b1'>jQ 1.9.0b1</a> <a
+			href='index.html?jquery=1.8.1'>jQ 1.8</a> <a
+			href='index.html?jquery=1.7.0'>jQ 1.7</a> <a
+			href='index.html?jquery=1.6.0'>jQ 1.6</a> <a
+			href='index.html?jquery=1.5.0'>jQ 1.5</a>
+		<button class='play-all'>Play all</button>
+	</div>
 
-  <div class='description'>
-    <h1>jQuery transit tests</h1>
-    <p class='version' id='jquery-version'></p>
-    <p>Since there's no reliable programmatic way to test for transitions, this
-    is a simple page set up so you can visually inspect effects
-    conveniently.</p>
-  </div>
+	<div class='description'>
+		<h1>jQuery transit tests</h1>
+		<p class='version' id='jquery-version'></p>
+		<p>Since there's no reliable programmatic way to test for
+			transitions, this is a simple page set up so you can visually inspect
+			effects conveniently.</p>
+	</div>
 
-  <div class='tests'></div>
-  <script>
+	<div class='tests'></div>
+	<script>
     group('Transformations');
 
     test('Translation', function($box) { $box.transition({ x: 20, y: 20 }); });

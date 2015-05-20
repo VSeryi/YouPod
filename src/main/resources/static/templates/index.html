@@ -1,41 +1,102 @@
-<div ng-controller="IndexController as vm" layout="column" layout-fill>
-        <div id="content">
-            <div id="videobackground">
-                <video loop autoplay>
-                    <source src="img/slides/4.mp4"/>
-                </video>
-            </div>
-            <div>
-                <div class="jumbotron" ng-hide="downloading">
-                    <center><h1>Consigue tu música</h1>
-                    <form>
-                        <div class="form-group">
-                            <input type="url" class="form-control" ng-model="vm.link" placeholder="YouTube Link">
-                        </div>
-                        <p><button type="submit" ng-click="vm.convertLink()" class="btn btn-danger">Convertir</button></p>
-                    </form></center>
-                </div>
 
-                <div class="jumbotron" ng-show="loading">
-                    <center><h1>Transformando tu música</h1>
-                    <div class="progress progress-striped active" style="height: 20px;">
-                        <div class="progress-bar" style="width: 100%;"></div>
-                    </div></center>
-                </div>
+<div id="content" ng-controller="IndexController as vm">
+	<!--  <div id="videobackground">
+				<video loop autoplay>
+					<source src="img/slides/4.mp4" />
+					
+				</video>
+			</div>-->
+	<div>
+		<div class="jumbotron" ng-hide="vm.downloading">
+			<center>
+				<h1>Consigue tu mÃºsica</h1>
+				<form>
+					<div class="form-group">
+						<input type="url" class="form-control" ng-model="vm.link"
+							placeholder="YouTube Link">
+					</div>
+					<p>
+						<button type="submit" ng-click="vm.convertLink()"
+							class="btn btn-primary">Convertir</button>
+					</p>
+				</form>
+			</center>
+		</div>
 
-                <div class="jumbotron" ng-show="loaded">
-                    <center><h1>Descarga tu música</h1></center>
-                    <img src="https://i.ytimg.com/vi_webp/N5lYyiFN9GM/mqdefault.webp" style="float: left; margin-right:70px;"> <h6>{{vm.music.title}}</h6><br>Descripcion
-                    <p><button href="{{vm.music.link}}" class="btn btn-danger">Descargar</button></p>
-                    <p style="clear:both;"></p>
-                    <hr>
-                    <center><h1>Guardala para siempre</h1></center>
-                    <p>Create una cuenta y guarda tus canciones, reproducelas cuando quieras o compartelas con tus amigos.</p>
-                    <p><button class="btn btn-danger">Registrarse</button></p>
-                    <button class="btn btn-block btn-facebook" ng-click="authenticate('facebook')">Sign in with Facebook</button>
-                    <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">Sign in with Google</button>
-                    <button class="btn btn-block btn-twitter" ng-click="authenticate('twitter')">Sign in with Twitter</button>
-                </div>
-            </div>
-        </div>
-        </div>
+		<div class="jumbotron" ng-show="vm.loading">
+			<center>
+				<h1>Transformando tu mÃºsica</h1>
+				<div class="progress progress-striped active" style="height: 20px;">
+					<div class="progress-bar" style="width: 100%;"></div>
+				</div>
+			</center>
+		</div>
+
+		<div class="jumbotron" ng-show="vm.loaded">
+			<center>
+				<h1>Descarga tu mÃºsica</h1>
+			</center>
+			<img ng-src="{{vm.music.thumbail}}"
+				style="float: left; margin-right: 70px;">
+			<h6>{{vm.music.title}}</h6>
+			<br>{{vm.music.description}}
+			<p>
+				<a ng-href="{{vm.music.download}}" class="btn btn-primary">Descargar</a>
+			</p>
+			<p style="clear: both;"></p>
+			<hr>
+			<center>
+				<h1>Guardala para siempre</h1>
+			</center>
+			<p>Create una cuenta y guarda tus canciones, reproducelas cuando
+				quieras o compartelas con tus amigos.</p>
+			<p>
+				<button class="btn btn-primary">Registrarse</button>
+			</p>
+			<button class="btn btn-block btn-facebook"
+				ng-click="authenticate('facebook')">Login con Facebook</button>
+			<button class="btn btn-block btn-google-plus"
+				ng-click="authenticate('google')">Login con Google</button>
+			<button class="btn btn-block btn-twitter"
+				ng-click="authenticate('twitter')">Login con Twitter</button>
+		</div>
+	</div>
+</div>
+
+<!-- Collapsible sidebar -->
+<div id="sidebar">
+
+	<!-- Widget Area -->
+	<div id="widgets">
+
+		<!-- Main menu -->
+		<nav id="mainmenu">
+			<ul>
+				<li><a href="#/" class="active">Inicio</a></li>
+				<li><a href="#/signup">Registro/Login</a></li>
+				<li><a href="portfolio-4.html">Ãšltimas Novedades</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="team.html">Team</a></li>
+				<li><a href="#">Pages</a>
+					<ul>
+						<li><a href="404.html">404 page</a></li>
+						<li><a href="elements.html">Elements</a></li>
+						<li><a href="grid.html">Grid System</a></li>
+						<li><a href="blog-single.html">Single Post</a></li>
+					</ul></li>
+				<li><a href="contact.html">Contacto</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<!-- Copyright -->
+	<footer>
+		<p class="copyright">Â© Copyright 2015 YouPod</p>
+	</footer>
+</div>
+<script>
+	$(document).ready(function() {
+		$.material.init();
+	});
+</script>

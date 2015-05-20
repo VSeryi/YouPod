@@ -2,13 +2,13 @@ package youpod;
 
 public class SimpleMusic {
 	private String title;
-	private int length;
+	private Integer length;
 	private String link;
 
 	public SimpleMusic() {
 	}
 
-	public SimpleMusic(String title, int length, String link) {
+	public SimpleMusic(String title, Integer length, String link) {
 		this.title = title;
 		this.length = length;
 		this.link = link;
