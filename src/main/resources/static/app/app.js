@@ -11,6 +11,8 @@ angular.module("app", [ "ngResource", "ngRoute","satellizer" ]).config(function(
     });
     $authProvider.twitter({
       url: '/auth/twitter',
+      
+      type: '2.0',
     	  responseType:'token'
     });
 
