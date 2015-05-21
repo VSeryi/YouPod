@@ -18,6 +18,7 @@ function SignupController($resource,$scope, $auth,userService,$location) {
 	};
 	
 	vm.addUser = function (newUser) {
+		alert("Hello! I am an alert box!!");
 		userService.addUser(newUser);
 		vm.newUser = {};
 		$location.path("/");

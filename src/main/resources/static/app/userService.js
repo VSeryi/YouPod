@@ -1,11 +1,11 @@
 angular.module("app").service("userService", userService);
 
-userService.$inject = ["$resource"];
+userService.$inject = ["$resource","SessionService"];
 
-function userService($resource) {
+function userService($resource, SessionService) {
 	
 	var that = this;
-
+	
 	var UserResource = $resource('/user/:id', {
 		id : '@id'},
 		{update : {method : "PUT"}
@@ -34,8 +34,10 @@ function userService($resource) {
 		console.log(newUser.email);
 
 		new UserResource(newUser).$save(function(user) {
-			console.log("servidor2");
+			alert("Hello! I am an alert box!!");
+			SessionService.login(user.id);
 			users.push(user);
+			
 		});
 	}
 }
