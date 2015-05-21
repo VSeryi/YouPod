@@ -311,6 +311,10 @@ address {
   background-image: url(../img/bg.jpg);
   overflow: auto;
 }
+#content-view{
+	height:100%;
+	
+}
 
 
 .sidebar-open #content {
