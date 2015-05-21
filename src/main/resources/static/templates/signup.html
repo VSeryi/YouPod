@@ -25,20 +25,20 @@
 						<h3>Â¿Eres Nuevo?</h3>
 					</header>
 					<p>
-					<form ng-submit="" class="form-horizontal">
+					<form class="form-horizontal" ng-submit="vm.addUser(vm.newUser)">
 						<fieldset>
 							<div class="form-group">
 								<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 								<div class="col-lg-10">
 									<input type="email" class="form-control" id="inputEmail"
-										placeholder="Email" required>
+										placeholder="Email" ng-model= "vm.newUser.email" required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
 								<div class="col-lg-10">
 									<input type="password" class="form-control" id="inputPassword"
-										placeholder="Password" required>
+										placeholder="Password" ng-model= "vm.newUser.password" required>
 									<div class="checkbox checkbox-primary">
 										<label> <input type="checkbox" required> Aceptar
 											Condiciones Inexistentes

@@ -1,6 +1,6 @@
 package youpod;
 
-import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +28,8 @@ public class UserRestController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<User> addUser(@RequestBody User usuario) {
+		System.out.println("Usuario: " + usuario.getEmail());
+		System.out.println("Password: " + usuario.getPassword());
 		userRepository.save(usuario);
 		return new ResponseEntity<>(usuario, HttpStatus.CREATED);
 		}

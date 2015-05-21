@@ -1,17 +1,40 @@
-angular.module("app").factory("blogManager", blogManager);
+angular.module("app").service("userService", userService);
 
-blogManager.$inject = [ "$resource", "$timeout" ];
+userService.$inject = ["$resource"];
 
-function blogManager($resource, $timeout) {
+function userService($resource) {
+	
+	var that = this;
 
-	var UserResource = $resource('/users/:id', {
-		id : '@id'});
+	var UserResource = $resource('/user/:id', {
+		id : '@id'},
+		{update : {method : "PUT"}
+		
+		});
 	
 
 	var users = [];
 	
-	function addUser (newUser) {
+	this.getUsers = function getUsers() {
+		return users;
+	}
+
+	this.getUser = function getUser(id) {
+		for (var i = 0; i < users.length; i++) {
+			if (users[i].id.toString() === id) {
+				return users[i];
+			}
+		}
+	}
+	
+	
+	
+	this.addUser = function addUser (newUser) {
+		console.log("servidor");
+		console.log(newUser.email);
+
 		new UserResource(newUser).$save(function(user) {
+			console.log("servidor2");
 			users.push(user);
 		});
 	}
