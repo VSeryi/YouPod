@@ -5,10 +5,12 @@ package youpod;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,24 +38,45 @@ public class UserRestController {
 	public ResponseEntity<User> addUser(@RequestBody User usuario) {
 		System.out.println("Usuario: " + usuario.getEmail());
 		System.out.println("Password: " + usuario.getPassword());
-		userRepository.save(usuario);
-		return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+		if (userRepository.findByEmail(usuario.getEmail()).isEmpty()){
+			System.out.println("guardado");
+			userRepository.save(usuario);
+			return new ResponseEntity<>(usuario, HttpStatus.CREATED);
+		}else{
+			System.out.println("no guardado");
+			return new ResponseEntity<>(usuario, HttpStatus.NOT_ACCEPTABLE);
+		}
 		}
 	
 	@RequestMapping(value = "/facebook",method = RequestMethod.POST)
 	public ResponseEntity<User> addFacebook(@RequestBody String json) {
 		User facebook = new User(readClientId(json),1);
-		userRepository.save(facebook);
-		return new ResponseEntity<>(facebook, HttpStatus.CREATED);
+		String clientId = readClientId(json);
+		if (userRepository.findByFacebookId(clientId).isEmpty()) {
+			System.out.println("guardaduco ole");
+			userRepository.save(facebook);
+			return new ResponseEntity<>(facebook, HttpStatus.CREATED);
 		}
+		else {
+			System.out.println("no guardaduco");
+			return new ResponseEntity<>(facebook, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
 	
 	@RequestMapping(value = "/google",method = RequestMethod.POST)
 	public ResponseEntity<User> addGoogle(@RequestBody String json) {
-		System.out.println("ole2");
 		User google = new User(readClientId(json),0);
-		userRepository.save(google);
-		return new ResponseEntity<>(google, HttpStatus.CREATED);
+		String clientId = readClientId(json);
+		if (userRepository.findByGoogleId(clientId).isEmpty()) {
+			System.out.println("Reven");
+			userRepository.save(google);
+			return new ResponseEntity<>(google, HttpStatus.CREATED);
 		}
+		else  {
+			System.out.println("No reven no party");
+			return new ResponseEntity<>(google, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable Integer id) {
@@ -65,4 +88,5 @@ public class UserRestController {
 	      return (String) jsonDownload.get("clientId");
 		
 	}
+	
 }
