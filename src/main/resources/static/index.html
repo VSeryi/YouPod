@@ -62,7 +62,33 @@
 	<!-- Main wrapper -->
 
 	<!-- Content -->
-	<div id="main-wrapper" ng-view></div>
+	<div id="main-wrapper">
+	<div ng-view></div>
+<!-- Collapsible sidebar -->
+<div id="sidebar">
+
+	<!-- Widget Area -->
+	<div id="widgets">
+
+		<!-- Main menu -->
+		<nav id="mainmenu">
+			<ul>
+				<li><a href="#/" class="active">Inicio</a></li>
+				<li><a href="#/signup">Registro/Login</a></li>
+				<li><a href="#/lastnews">Ãšltimas Novedades</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="#/we">Nosotros</a></li>
+				<li><a href="#/contact">Contacto</a></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Copyright -->
+	<footer>
+		<p class="copyright">Â© Copyright 2015 YouPod</p>
+	</footer>
+</div>
+	</div>
 
 
 	<!-- JavaScripts -->
@@ -78,6 +104,7 @@
 	<script src="bower_components/velocity/velocity.js"></script>
 	<script src="bower_components/moment/min/moment-with-locales.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular/angular-cookies.min.js"></script>
 	<script
 		src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
 	<script
@@ -91,15 +118,12 @@
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
 
 	<script src="./app/app.js"></script>
-	<script src="./app/blogmanager.js"></script>
 	<script src="./app/routeconfig.js"></script>
-	<script src="./app/postlistcontroller.js"></script>
-	<script src="./app/newpostcontroller.js"></script>
-	<script src="./app/postcontroller.js"></script>
 	<script src="./app/indexcontroller.js"></script>
 	<script src="./app/signupcontroller.js"></script>
 	<script src="./app/userService.js"></script>
 	<script src="./app/contactcontroller.js"></script>
+	<script src="./app/sessioncontroller.js"></script>
 
 </body>
 

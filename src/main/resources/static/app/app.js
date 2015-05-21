@@ -1,4 +1,4 @@
-angular.module("app", [ "ngResource", "ngRoute","satellizer" ]).config(function($authProvider) {
+angular.module("app", [ "ngResource", "ngRoute","satellizer", "ngCookies"]).config(function($authProvider) {
 
     $authProvider.facebook({
     	url: '/user/facebook',
@@ -8,12 +8,6 @@ angular.module("app", [ "ngResource", "ngRoute","satellizer" ]).config(function(
     $authProvider.google({
     	url: '/user/google',
       clientId: '572360036658-qst6aur51pjsboosagukdrd5puu6cttj.apps.googleusercontent.com'
-    });
-    $authProvider.twitter({
-      url: '/auth/twitter',
-      
-      type: '2.0',
-    	  responseType:'token'
     });
 
   });
