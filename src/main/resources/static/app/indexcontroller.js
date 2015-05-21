@@ -23,10 +23,10 @@ function IndexController($resource, $scope, $auth) {
 	vm.convertLink = function() {
 		vm.downloading = true;
 		vm.loading = true;
-		var SimpleMusic = $resource('/video/:link', {
+		var Music = $resource('/video/:link', {
 			link : '@link'
 		});
-		vm.music = SimpleMusic.get({
+		vm.music = Music.get({
 			youtubeLink : vm.link
 		}, function() {
 			vm.loading = false;

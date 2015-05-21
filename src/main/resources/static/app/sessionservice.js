@@ -1,41 +1,30 @@
 angular.module("app").service("SessionService", SessionService);
 
-SessionService.$inject = ["$resource"];
+SessionService.$inject = ["$resource", "$cookiesProvider"];
 
-function SessionService($resource) {
+function SessionService($resource, $cookies) {
 	
 	var that = this;
-
-	var UserResource = $resource('/user/:id', {
-		id : '@id'},
-		{update : {method : "PUT"}
+	
+	this.isLogged = function(){
+		alert("Hello! I am an alert box!!");
+		return $cookies.get("youpodsessionlogged");
+	}
+	
+	this.login = function(id){
+		$cookies.put("youpodsessionlogged",true);
+		$cookies.put("youpodsessionid",id);
 		
-		});
-	
-
-	var users = [];
-	
-	this.getUsers = function getUsers() {
-		return users;
-	}
-
-	this.getUser = function getUser(id) {
-		for (var i = 0; i < users.length; i++) {
-			if (users[i].id.toString() === id) {
-				return users[i];
-			}
-		}
 	}
 	
-	
-	
-	this.addUser = function addUser (newUser) {
-		console.log("servidor");
-		console.log(newUser.email);
-
-		new UserResource(newUser).$save(function(user) {
-			console.log("servidor2");
-			users.push(user);
-		});
+	this.logout = function(){
+		$cookies.remove("youpodsessionlogged");
+		$cookies.remove("youpodsessionid");
+		
 	}
+	
+	this.getId = function(){
+		return $cookies.get("youpodsessionid");
+	}
+	
 }
