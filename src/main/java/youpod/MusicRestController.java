@@ -9,6 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -137,6 +139,39 @@ public class MusicRestController {
 				return bsRepository.findOne(id);
 			}
 		}
+	}
+	
+	@RequestMapping(value = "/nacional", method = RequestMethod.GET)
+	public List<NacionalMusic> getMusicNacional() {
+		List<NacionalMusic> listaN = new ArrayList<NacionalMusic>();
+		List<NacionalMusic> lista2 = nacionalRepository.findAll();
+		int i = lista2.size()-1;
+		while((i>=0)&&(i>=lista2.size()-4)){
+			listaN.add(lista2.get(i));	
+		}
+		return listaN;
+	}
+	
+	@RequestMapping(value = "/internacional", method = RequestMethod.GET)
+	public List<InternacionalMusic> getMusicInternacional() {
+		List<InternacionalMusic> listaI = new ArrayList<InternacionalMusic>();
+		List<InternacionalMusic> lista2 = interRepository.findAll();
+		int i = lista2.size()-1;
+		while((i>=0)&&(i>=lista2.size()-4)){
+			listaI.add(lista2.get(i));	
+		}
+		return listaI;
+	}
+	
+	@RequestMapping(value = "/bandassonarasmusic", method = RequestMethod.GET)
+	public List<BandasSonarasMusic> getBandasSonarasMusic() {
+		List<BandasSonarasMusic> listaB = new ArrayList<BandasSonarasMusic>();
+		List<BandasSonarasMusic> lista2 = bsRepository.findAll();
+		int i = lista2.size()-1;
+		while((i>=0)&&(i>=lista2.size()-4)){
+			listaB.add(lista2.get(i));	
+		}
+		return listaB;
 	}
 	
 	private static String readAll(Reader rd) throws IOException {

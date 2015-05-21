@@ -9,11 +9,9 @@
 		<div id="heading" class="row">
 			<div class="filter col-12">
 				<header>
-					<h1>Últimas Descargas</h1>
+					<h1>Últimas Descargas Nacionales</h1>
 					<h2>¿Qué se ha descargado ahora mismo?</h2>
 				</header>
-
-
 			</div>
 		</div>
 
@@ -21,22 +19,96 @@
 		<div class="isotope isotope-4 row">
 
 			<!-- Portfolio item -->
-			<article class="portfolio isotope-item buildings design col-3">
+			<article  ng-show="vm.nacional.length>0" ng-repeat= "music in vm.nacional" class="portfolio isotope-item buildings design col-3">
 				<a href="" class="image"
 					style="background-image: url(img/portfolio-images/1.jpg)"></a>
 				<div class="inner">
 					<header>
-						<h3>Over the Horizon</h3>
-						<a class="btn btn-small btn-default"
+						<h3>{{music.tittle}}</h3>
+						<a ng-href="music.link" class="btn btn-small btn-default"
 							style="width: 50%; margin: 0;"> <i href="#"
 							class="fa fa-arrow-down fa-3"></i>
-						</a><a class="btn btn-small btn-default"
+						</a>
+						<a class="btn btn-small btn-default"
 							style="width: 50%; margin: 0;"> <i href="#"
 							class="fa fa-plus fa-3"></i>
 						</a>
 				</div>
 			</article>
+			<div ng-hide= "vm.nacional.lenght===0" class="well well-lg">
+  				  Aun no has usado nuestra aplicacion
+			</div>
 		</div>
+		
+		<div id="heading" class="row">
+			<div class="filter col-12">
+				<header>
+					<h1>Últimas Descargas Internacionales</h1>
+					<h2>¿Qué se ha descargado ahora mismo?</h2>
+				</header>
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<div class="isotope isotope-4 row">
+
+			<!-- Portfolio item -->
+			<article  ng-show="vm.internacional.length>0" ng-repeat= "music in vm.internacional" class="portfolio isotope-item buildings design col-3">
+				<a href="" class="image"
+					style="background-image: url(img/portfolio-images/1.jpg)"></a>
+				<div class="inner">
+					<header>
+						<h3>{{music.tittle}}</h3>
+						<a ng-href="music.link" class="btn btn-small btn-default"
+							style="width: 50%; margin: 0;"> <i href="#"
+							class="fa fa-arrow-down fa-3"></i>
+						</a>
+						<a class="btn btn-small btn-default"
+							style="width: 50%; margin: 0;"> <i href="#"
+							class="fa fa-plus fa-3"></i>
+						</a>
+				</div>
+			</article>
+			<div ng-hide= "vm.internacional.lenght===0" class="well well-lg">
+  				  Aun no has usado nuestra aplicacion
+			</div>
+		</div>
+		
+		<div id="heading" class="row">
+			<div class="filter col-12">
+				<header>
+					<h1>Últimas Descargas de Bandas Sonoras</h1>
+					<h2>¿Qué se ha descargado ahora mismo?</h2>
+				</header>
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<div class="isotope isotope-4 row">
+
+			<!-- Portfolio item -->
+			<article  ng-show="vm.sonoras.length>0" ng-repeat= "music in vm.sonoras" class="portfolio isotope-item buildings design col-3">
+				<a href="" class="image"
+					style="background-image: url(img/portfolio-images/1.jpg)"></a>
+				<div class="inner">
+					<header>
+						<h3>{{music.tittle}}</h3>
+						<a ng-href="music.link" class="btn btn-small btn-default"
+							style="width: 50%; margin: 0;"> <i href="#"
+							class="fa fa-arrow-down fa-3"></i>
+						</a>
+						<a class="btn btn-small btn-default"
+							style="width: 50%; margin: 0;"> <i href="#"
+							class="fa fa-plus fa-3"></i>
+						</a>
+				</div>
+			</article>
+			<div ng-hide= "vm.sonoras.lenght===0" class="well well-lg">
+  				  Aun no has usado nuestra aplicacion
+			</div>
+		</div>
+		
+		
 		<!-- Page heading -->
 		<div id="heading" class="row">
 			<div class="filter col-12">

@@ -7,11 +7,7 @@ function LastnewsController($resource,$scope, $auth) {
 	var vm = this;
 	
 	//View model properties
-	vm.link = "";
-	vm.downloading = false;
-	vm.loading = false;
-	vm.loaded = false;
-		
+	
 	//Controller logic
 	
 	$scope.authenticate = function(provider) {
@@ -20,15 +16,12 @@ function LastnewsController($resource,$scope, $auth) {
 	
 	//Controller actions
 
-	vm.convertLink = function() {
-		vm.downloading = true;
-		vm.loading = true;
-		var SimpleMusic = $resource('/video/:link', {
-			link : '@link'
-		});
-		vm.music = SimpleMusic.get({youtubeLink : vm.link}, function(){
-			vm.loading = true;
-			vm.loaded = true;
-		});
-	};
+		var Nacional = $resource ('/video/nacional')
+		vm.nacional = Nacional.get();
+		
+		var Internacional = $resource ('/video/internacional')
+		vm.internacional = Internacional.get();
+		
+		var Sonoras = $resource ('/video/bandassonarasmusic')
+		vm.sonoras = Sonoras.get();
 };
