@@ -1,4 +1,4 @@
-angular.module("app").controller("ContactController", SignupController);
+angular.module("app").controller("ContactController", ContactController);
 
 ContactController.$inject = ["$resource","$scope", "$auth"];
 
@@ -9,12 +9,9 @@ function ContactController($resource,$scope, $auth) {
 	//View model properties
 	vm.email = {};
 		
-	//Controller logic
-	
-	
-	//Controller actions
-
-	vm.sendEmail = function() {
+	var EmailResource = $resource('/email');	
 		
+	vm.sendEmail = function() {
+		new EmailResource(vm.email).$save();
 	};
 };
