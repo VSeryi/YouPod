@@ -71,10 +71,11 @@
 	<div id="widgets">
 
 		<!-- Main menu -->
-		<nav id="mainmenu">
+		<nav id="mainmenu" ng-controller="MainController as vm">
 			<ul>
 				<li><a href="#/">Inicio</a></li>
-				<li><a href="#/signup">Registro/Login</a></li>
+				<li><a ng-hide="vm.session.isLogged()" href="#/signup">Registro/Login</a></li>
+				<li><a ng-show="vm.session.isLogged()" href="#/signup">Registro/Login</a></li>
 				<li><a href="#/lastnews">Ãšltimas Novedades</a></li>
 				<li><a href="#faq">FAQ</a></li>
 				<li><a href="#/we">Nosotros</a></li>
@@ -123,7 +124,8 @@
 	<script src="./app/signupcontroller.js"></script>
 	<script src="./app/userService.js"></script>
 	<script src="./app/contactcontroller.js"></script>
-	<script src="./app/sessioncontroller.js"></script>
+	<script src="./app/sessionservice.js"></script>
+	<script src="./app/maincontroller.js"></script>
 
 </body>
 

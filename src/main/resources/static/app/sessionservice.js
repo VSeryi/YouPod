@@ -1,8 +1,8 @@
 angular.module("app").service("SessionService", SessionService);
 
-SessionService.$inject = ["$resource", "$cookiesProvider"];
+SessionService.$inject = ["$resource"];
 
-function SessionService($resource, $cookies) {
+function SessionService($resource) {
 	
 	var that = this;
 	
