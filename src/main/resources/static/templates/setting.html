@@ -1,132 +1,68 @@
-		<div id="content" ng-controller="ContactController as vm">
+<div id="content" ng-controller="SettingController as vm">
+	<!-- Fluid container -->
+	<div class="container-fluid">
 
-			<!-- Fluid container -->
-			<div class="container-fluid">
+		<!-- Page heading -->
+		<div id="heading" class="row">
+			<div class="col-12">
 
-				<!-- Page heading -->
-				<div id="heading" class="row">
-					<div class="col-12">
-
-						<header>
-							<h1>Contacto</h1>
-							<h2>Siempre a su servicio</h2>
-						</header>
-
-					</div>
-				</div>
-
-				<!-- Main content -->
-				<div class="row">
-					<div class="main-column col-12">
-
-						<!-- Map -->
-						<iframe width="100%" height="350" frameborder="0" scrolling="no"
-							marginheight="0" marginwidth="0"
-							src="http://www.openstreetmap.org/export/embed.html?bbox=-3.8895%2C40.3407%2C-3.8627%2C40.3293&amp;layer=hot&amp;marker=40.33474%2C-3.87843"
-							style="border: 1px solid black"></iframe>
-
-						<!-- Inner -->
-						<div class="inner">
-
-							<div class="row">
-								<div class="col-9">
-									<h3>¿Alguna duda, suplica o sugerencia?</h3>
-									<p>No dudes en ponerte en contacto con nosotros si tienes alguna de estas ideas en tu cabeza.</p>
-									<hr>
-									<form id="contact-form"
-										action="http://r6themes.com/rayleigh/background/send.php"
-										method="post">
-										<div class="form-group">
-											<label for="firstname">Nombre<span
-												class="form-required" title="Este campo es obligatorio.">*</span></label>
-											<input type="text" name="firstname" class="form-control half"
-												id="firstname" required>
-										</div>
-										<div class="form-group">
-											<label for="lastname">Apellido<span
-												class="form-required" title="Este campo es obligatorio.">*</span></label>
-											<input type="text" name="lastname" class="form-control half"
-												id="lastname" required>
-										</div>
-										<div class="form-group">
-											<label for="email">E-mail <span class="form-required"
-												title="Este campo es obligatorio.">*</span></label> <input type="email"
-												name="email" class="form-control half" id="email" required>
-										</div>
-										<div class="form-group">
-											<label for="subject">Asunto</label> <input type="text"
-												name="subject" class="form-control half" id="subject">
-										</div>
-										<div class="form-group">
-											<label for="message">Mensaje <span
-												class="form-required" title="Este campo es obligatorio.">*</span></label>
-											<textarea name="message" class="form-control" rows="4"
-												id="message" required></textarea>
-										</div>
-										<button type="submit" class="btn btn-primary">
-											<i class="glyphicon glyphicon-send"></i>  Enviar
-										</button>
-									</form>
-								</div>
-								<div class="col-3">
-									<h3>Nuestra Dirección</h3>
-									<div class="icon-text">
-										<i class="fa fa-map-marker"></i>
-											Calle YouPod, 36 - 1ª Planta Letra A
-									</div>
-									<div class="icon-text">
-										<i class="fa fa-phone"></i>
-										+346 66 666 666
-									</div>
-									<div class="icon-text">
-										<i class="fa fa-envelope-o"></i>
-											<a href="mailto:contact@youpod.es">contact@youpod.es</a>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-				</div>
+				<header>
+					<h1>Edita tu perfil</h1>
+					<h2>A�ade tus datos personales</h2>
+				</header>
 
 			</div>
-
 		</div>
 
-		<!-- Collapsible sidebar -->
-		<div id="sidebar">
+		<!-- Main content -->
+		<div class="row services">
 
-			<!-- Widget Area -->
-			<div id="widgets">
+			<!-- Service box -->
+			<article class="service-box col-12">
+				<div class="inner">
+					<header>
+						<h3>Editar</h3>
+					</header>
+					<p>
+					<form class="form-horizontal" ng-submit="vm.updateUser(vm.user)">
+						<fieldset>
+							<div class="form-group">
+								<label for="inputEmail" class="col-lg-2 control-label">Nuevo Email</label>
+								<div class="col-lg-10">
+									<input type="email" class="form-control" id="inputEmail"
+										placeholder="Email" ng-model= "vm.user.email" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputPassword" class="col-lg-2 control-label">Nueva Contrase�a:</label>
+								<div class="col-lg-10">
+									<input type="password" class="form-control" id="inputPassword"
+										placeholder="Password" ng-model= "vm.user.password" required>
+									<div class="checkbox checkbox-primary">
+										<label> <input type="checkbox" required>Confirmar cambios
+										</label>
+									</div>
 
-<!-- Main menu -->
-		<nav id="mainmenu">
-			<ul>
-				<li><a href="#/">Inicio</a></li>
-				<li><a href="#/signup">Registro/Login</a></li>
-				<li><a href="#/lastnews">Últimas Novedades</a></li>
-				<li><a href="blog.html">Blog</a></li>
-				<li><a href="team.html">Team</a></li>
-				<li><a href="#">Pages</a>
-					<ul>
-						<li><a href="404.html">404 page</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><a href="grid.html">Grid System</a></li>
-						<li><a href="blog-single.html">Single Post</a></li>
-					</ul></li>
-				<li><a href="#/contact" class="active">Contacto</a></li>
-			</ul>
-		</nav>
-
-
-			</div>
-
-			<!-- Copyright -->
-	<footer>
-		<p class="copyright">Â© Copyright 2015 YouPod</p>
-	</footer>
-
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-lg-10 col-lg-offset-2">
+									<button type="submit" class="btn btn-primary">Editar</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+					<hr>
+					<button class="btn btn-block btn-facebook"
+						ng-click="authenticate('facebook')">Registrarse con
+						Facebook</button>
+					<button class="btn btn-block btn-google-plus"
+						ng-click="authenticate('google')">Registrarse con Google</button>
+					</p>
+				</div>
+			</article>
+		</div>
+	</div>
 </div>
 <script>
 	$(document).ready(function() {
@@ -138,3 +74,4 @@
 	    });
 	});
 </script>
+

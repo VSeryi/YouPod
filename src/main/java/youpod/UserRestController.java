@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
 @RequestMapping("/user")
 
@@ -81,6 +82,14 @@ public class UserRestController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void deleteItem(@PathVariable Integer id) {
 		userRepository.delete(id);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<User> updateUser(@RequestBody User updatedUser,
+			@PathVariable Integer id) {
+		updatedUser.setId(id);
+		User user = userRepository.saveAndFlush(updatedUser);
+		return new ResponseEntity<>(user,HttpStatus.CREATED);
 	}
 	
 	private String readClientId(String json){
