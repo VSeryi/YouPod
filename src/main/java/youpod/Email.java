@@ -1,6 +1,17 @@
 package youpod;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Email {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String firstname, lastname, subject, email, message;
 
 	public Email(){}
@@ -13,6 +24,13 @@ public class Email {
 		this.subject = subject;
 		this.email = email;
 		this.message = message;
+	}
+	public Email(Email email) {
+		this.firstname = email.getFirstname();
+		this.lastname = email.getLastname();
+		this.subject = email.getSubject();
+		this.email = email.getEmail();
+		this.message = email.getMessage();
 	}
 
 	public String getFirstname() {

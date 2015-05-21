@@ -16,12 +16,30 @@ package youpod;
 		private String title;
 		private String description;
 		private String download;
+		private String type;
 
-		public Music(String title, String description, String thumbail, String download) {
+		public Music(String title, String description, String thumbail, String download, String type) {
 			this.thumbail = thumbail;
 			this.title = title;
 			this.description = description;
 			this.download = download;
+			this.type = type;
+		}
+
+		public Music(Music music) {
+			this.thumbail = music.getThumbail();
+			this.title = music.getTitle();
+			this.description = music.getDescription();
+			this.download = music.getDownload();
+			this.type = music.type;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
 		}
 
 		public Integer getId() {

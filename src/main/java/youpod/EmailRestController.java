@@ -25,10 +25,46 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/email")
 
 public class EmailRestController {
+	
+	@Autowired
+	private EmailRepository emailRepository;
+	
+	@Autowired
+	private RegistroRepository emailRegistroRepository;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Email> addUser(@RequestBody Email email) {
-	      String from = "support@youpod.es";	      
+		String mensaje = "Hola " + email.getFirstname() + " "+ email.getLastname()+",\nHemos recibido el siguiente mensaje:\n" + email.getMessage()+ "\nTe responderemos con la mayor brevedad posible";
+		if (revenEmail(email.getEmail(), email.getSubject(), mensaje)) {
+			System.out.println("Okis");
+			EmailContestacion emilio = new EmailContestacion (email);
+			emailRepository.save(emilio);
+			return new ResponseEntity<>(email, HttpStatus.OK);
+		}
+		else {
+			System.out.println("No okis");
+			return new ResponseEntity<>(email, HttpStatus.NOT_ACCEPTABLE);
+		}
+	} 
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public ResponseEntity<Email> addUser2(@RequestBody Email email) {
+		String mensaje = "Hemos completado su registro con exito, recuerde que su email es: "+email.getEmail();
+		String subject = "Registro correcto";
+		if (revenEmail(email.getEmail(), subject, mensaje)) {
+			System.out.println("Ok");
+			EmailRegistro emili = new EmailRegistro (email);
+			emailRegistroRepository.save(emili);
+			return new ResponseEntity<>(email, HttpStatus.OK);
+		}
+		else {
+			System.out.println("No ok");
+			return new ResponseEntity<>(email, HttpStatus.NOT_ACCEPTABLE);
+		}
+	} 
+	
+	private boolean revenEmail(String email, String asunto, String mensaje) {
+		 String from = "support@youpod.es";	      
 	      final String username = "youpod.email@gmail.com";
 			final String password = "youpoddaw";
 	 
@@ -53,22 +89,25 @@ public class EmailRestController {
 
 	          // Set To: header field of the header.
 	          message.addRecipient(Message.RecipientType.TO,
-	                                   new InternetAddress(email.getEmail()));
+	                                   new InternetAddress(email));
+	          message.addRecipient(Message.RecipientType.BCC,
+                     new InternetAddress(username));
 
 	          // Set Subject: header field
-	          message.setSubject(email.getSubject());
+	          message.setSubject(asunto);
 
 	          // Now set the actual message
-	          message.setText(email.getMessage());
-
+	          message.setText(mensaje);
 	          // Send message
 	          Transport.send(message);
-	          System.out.println("Sent message successfully....");
 	       }catch (MessagingException mex) {
 	          mex.printStackTrace();
+	          return false;
 	       }
-		return new ResponseEntity<>(email, HttpStatus.CREATED);
-		}}
+		return true;
+		}
+	}
 	
-	
+
+
 

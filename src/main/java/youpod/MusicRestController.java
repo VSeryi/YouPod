@@ -32,10 +32,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class MusicRestController {
 
 	@Autowired
-	private MusicRepository musicRepository;
+	private NacionalMusicRepository nacionalRepository;
+	
+	@Autowired
+	private InternacionalMusicRepository interRepository;
+	
+	@Autowired
+	private BandasSonarasMusicRepository bsRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Music convertLink(@RequestParam String youtubeLink)
+	public Music convertLink(@RequestParam String youtubeLink, @RequestParam String type)
 			throws IOException {
 		String id = "";
 		Music music = Music();
@@ -73,7 +79,7 @@ public class MusicRestController {
 		      String description = (String) snippet.get("description");
 		      JSONObject thumbail = (JSONObject)((JSONObject) snippet.get("thumbnails")).get("high");
 		      String url = (String) thumbail.get("url");
-			  music = new Music(title, description, url, link);
+			  music = new Music(title, description, url, link, type);
 		    } catch (JSONException e){
 		    	error = true;
 		    }finally {
@@ -91,18 +97,46 @@ public class MusicRestController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Music> addMusic(@RequestBody Music music) {
-		musicRepository.save(music);
+		if (music.getType() == "Nacional"){
+			NacionalMusic musica = new NacionalMusic(music);
+			nacionalRepository.save(musica);
+		}else{
+			if (music.getType() == "Internacional"){
+				InternacionalMusic musi = new InternacionalMusic (music);
+				interRepository.save(musi);
+			}else{
+				BandasSonarasMusic mu = new BandasSonarasMusic (music);
+				bsRepository.save(mu);
+			}
+		}
 		return new ResponseEntity<>(music, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void deleteItem(@PathVariable Integer id) {
-		musicRepository.delete(id);
+	public void deleteItem(@PathVariable Integer id, @RequestBody Music music) {
+		if (music.getType() == "Nacional"){
+			nacionalRepository.delete(id);
+		}else{
+			if (music.getType() == "Internacional"){
+				interRepository.delete(id);
+			}else{
+				bsRepository.delete(id);
+			}
+		}
+			
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Music getMusic(@PathVariable int id) {
-		return musicRepository.findOne(id);
+	public Music getMusic(@PathVariable int id,@RequestBody Music music ) {
+		if (music.getType() == "Nacional"){
+			return nacionalRepository.findOne(id);
+		}else{
+			if (music.getType() == "Internacional"){
+				return interRepository.findOne(id);
+			}else{
+				return bsRepository.findOne(id);
+			}
+		}
 	}
 	
 	private static String readAll(Reader rd) throws IOException {
