@@ -8,6 +8,8 @@ angular.module("app", [ "ngResource", "ngRoute","satellizer" ]).config(function(
       clientId: '572360036658-qst6aur51pjsboosagukdrd5puu6cttj.apps.googleusercontent.com'
     });
     $authProvider.twitter({
-      url: '/auth/twitter'
+      url: '/auth/twitter',
+    	  responseType:'token'
     });
+
   });

@@ -1,6 +1,7 @@
 package youpod;
 
 import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +19,26 @@ public class User {
 	private boolean activate;
 	private ArrayList<Integer> friends;
 	private ArrayList<Integer> music;
+	private String facebookId;
+	private String googleId;
 
 	public User() {
+		friends = new ArrayList<>();
+		music = new ArrayList<>();
 	}
-	
-	public User (String email, String password){
+
+	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
+	}
+
+	public User(String socialId, int type) {
+		super();
+		if (type == 0) {
+			this.googleId = socialId;
+		} else {
+			this.facebookId = socialId;
+		}
 	}
 
 	public Integer getId() {
@@ -74,6 +88,5 @@ public class User {
 	public boolean addMusic(Integer music) {
 		return this.music.add(music);
 	}
-	
-	
+
 }
