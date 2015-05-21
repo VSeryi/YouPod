@@ -34,7 +34,6 @@ function userService($resource, SessionService) {
 		console.log(newUser.email);
 
 		new UserResource(newUser).$save(function(user) {
-			alert("Hello! I am an alert box!!");
 			SessionService.login(user.id);
 			users.push(user);
 			

@@ -1,10 +1,9 @@
 angular.module("app").controller("MainController", MainController);
 
-MainController.$inject = ["$resource","$scope", "$auth","SessionService","$location"];
+MainController.$inject = ["SessionService"];
 
-function MainController($resource,$scope, $auth,SessionService,$location) {
+function MainController(SessionService) {
 
 	var vm = this;
-	
-	vm.session = SessionService;
+	vm.logged = SessionService.isLogged();
 };
