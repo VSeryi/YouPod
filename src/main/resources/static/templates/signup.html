@@ -25,7 +25,7 @@
 						<h3>Â¿Eres Nuevo?</h3>
 					</header>
 					<p>
-					<form class="form-horizontal">
+					<form ng-submit="" class="form-horizontal">
 						<fieldset>
 							<div class="form-group">
 								<label for="inputEmail" class="col-lg-2 control-label">Email</label>
@@ -35,7 +35,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputPassword" class="col-lg-2 control-label">Password</label>
+								<label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
 								<div class="col-lg-10">
 									<input type="password" class="form-control" id="inputPassword"
 										placeholder="Password" required>
@@ -74,7 +74,7 @@
 						<h3>Â¿Ya tienes cuenta?</h3>
 					</header>
 					<p>
-					<form class="form-horizontal">
+					<form ng-submit="" class="form-horizontal">
 						<fieldset>
 							<div class="form-group">
 								<label for="inputEmail" class="col-lg-2 control-label">Email</label>
@@ -84,7 +84,7 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="inputPassword" class="col-lg-2 control-label">Password</label>
+								<label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
 								<div class="col-lg-10">
 									<input type="password" class="form-control" id="inputPassword"
 										placeholder="Password" required>
@@ -142,5 +142,10 @@
 <script>
 	$(document).ready(function() {
 		$.material.init();
+		$('#content').blurjs({
+	        source: '#content',
+	        radius: 30,
+	        overlay: 'rgba(0, 0, 0, .2)'
+	    });
 	});
 </script>

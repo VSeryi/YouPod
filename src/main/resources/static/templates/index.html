@@ -10,14 +10,14 @@
 		<div class="jumbotron" ng-hide="vm.downloading">
 			<center>
 				<h1>Consigue tu música</h1>
-				<form>
+				<form ng-submit="vm.convertLink()">
 					<div class="form-group">
 						<input type="url" class="form-control" ng-model="vm.link"
-							placeholder="YouTube Link" required>
+							placeholder="Full Youtube link like: https://www.youtube.com/watch?v=TrEk96vX8_Q" required>
 					</div>
 					<p>
-						<button type="submit" ng-click="vm.convertLink()"
-							class="btn btn-primary">Convertir</button>
+						<button type="submit" 
+													class="btn btn-primary">Convertir</button>
 					</p>
 				</form>
 			</center>
@@ -90,5 +90,10 @@
 <script>
 	$(document).ready(function() {
 		$.material.init();
+		$('#content').blurjs({
+	        source: '#content',
+	        radius: 30,
+	        overlay: 'rgba(0, 0, 0, .2)'
+	    });
 	});
 </script>

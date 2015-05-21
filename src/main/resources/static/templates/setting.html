@@ -131,5 +131,10 @@
 <script>
 	$(document).ready(function() {
 		$.material.init();
+		$('#content').blurjs({
+	        source: '#content',
+	        radius: 30,
+	        overlay: 'rgba(0, 0, 0, .2)'
+	    });
 	});
 </script>

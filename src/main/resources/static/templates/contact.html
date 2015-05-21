@@ -34,7 +34,7 @@
 									<p>No dudes en ponerte en contacto con nosotros si tienes alguna de estas ideas en tu cabeza.</p>
 									<hr>
 									<form id="contact-form"
-										action="http://r6themes.com/rayleigh/background/send.php"
+									ng-submit=""
 										method="post">
 										<div class="form-group">
 											<label for="firstname">Nombre<span
@@ -124,5 +124,10 @@
 <script>
 	$(document).ready(function() {
 		$.material.init();
+		$('#content').blurjs({
+	        source: '#content',
+	        radius: 30,
+	        overlay: 'rgba(0, 0, 0, .2)'
+	    });
 	});
 </script>

@@ -10,6 +10,14 @@ jQuery(document).ready(function($) {
 		$('#status').fadeOut();
 		$('#preloader').delay(350).fadeOut('slow');
 	});
+	
+	$(window).bind('hashchange', function() {
+		$('body').removeClass("sidebar-open");
+		$('#preloader').show();
+		$('#status').show();
+		$('#status').fadeOut();
+		$('#preloader').delay(350).fadeOut('slow');
+		});
 
 /*==========================================================*/
 /* Collapsible sidebar
