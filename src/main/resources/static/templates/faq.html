@@ -1,0 +1,108 @@
+
+<div id="content" ng-controller="FaqController as vm">
+	<!-- Fluid container -->
+	<div class="container-fluid">
+
+		<!-- Page heading -->
+		<div id="heading" class="row">
+			<div class="col-12">
+
+				<header>
+					<h1>FAQ</h1>
+					<h2>Dudas, preguntas frecuentes</h2>
+				</header>
+
+			</div>
+		</div>
+
+		<!-- Main content -->
+		<div class="row services">
+
+			<!-- Service box -->
+			<article class="service-box col-12">
+				<div class="inner">
+					<header>
+						<h3>Dudas mas frecuentes</h3>
+					</header>
+					<p>
+					<div class="panel panel-primary">
+		    			<div class="panel-heading">
+		        			<h3 class="panel-title">¿Es necesario el link de Youtube para convertir?</h3>
+		    		</div>
+		    			<div class="panel-body">
+		        			Si. Nuestro servicio ofrece unicamente acceso para links de Youtube. Para mayor exactitud, no estan permitidos links de versión corta
+		   				 </div>
+					</div>
+					</p>
+					<p>
+					<div class="panel panel-primary">
+		    			<div class="panel-heading">
+		        			<h3 class="panel-title">¿Existe algun numero limite de canciones para convertir?</h3>
+		    		</div>
+		    			<div class="panel-body">
+		        			No. Ofrecemos un servicio ilimitado para nuestros clientes.
+		   				 </div>
+					</div>
+					</p>
+					<p>
+					<div class="panel panel-primary">
+		    			<div class="panel-heading">
+		        			<h3 class="panel-title">¿Se trata de un servicio gratuito?</h3>
+		    		</div>
+		    			<div class="panel-body">
+		        			Si. Ofrecemos un servicio sin ningun tipo de costes.
+		   				 </div>
+					</div>
+					</p>
+					<div class="panel panel-primary">
+		    			<div class="panel-heading">
+		        			<h3 class="panel-title">¿Es necesario el registro para poder usar la opcion de convertir?</h3>
+		    		</div>
+		    			<div class="panel-body">
+		        			No. Pero cabe destacar que si se quiere guardar las canciones, si que es necesario el registro.
+		   				 </div>
+					</div>
+					</p>
+				</div>
+			</article>
+		</div>
+	</div>
+</div>
+
+<!-- Collapsible sidebar -->
+<div id="sidebar">
+
+	<!-- Widget Area -->
+	<div id="widgets">
+
+<!-- Main menu -->
+		<nav id="mainmenu">
+			<ul>
+				<li><a href="#/">Inicio</a></li>
+				<li><a href="#/signup" class="active">Registro/Login</a></li>
+				<li><a href="#/lastnews">Ãšltimas Novedades</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="#/we">Nosotros</a></li>
+				<li><a href="#/contact">Contacto</a></li>
+				<li><a href="#/faq">Preguntas Frecuentes</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<!-- Copyright -->
+	<footer>
+		<p class="copyright">Ã‚Â© Copyright 2015 YouPod</p>
+	</footer>
+
+</div>
+<script>
+	$(document).ready(function() {
+		$.material.init();
+		$('#content').blurjs({
+	        source: '#content',
+	        radius: 30,
+	        overlay: 'rgba(0, 0, 0, .2)'
+	    });
+	});
+</script>

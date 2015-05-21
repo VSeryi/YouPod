@@ -9,6 +9,7 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/contact', { templateUrl : "templates/contact.html" });
 	$routeProvider.when('/lastnews', { templateUrl : "templates/lastnews.html" });
 	$routeProvider.when('/we', { templateUrl : "templates/we.html" });
+	$routeProvider.when('/faq', { templateUrl : "templates/faq.html" });
 	$routeProvider.otherwise('/404', { templateUrl : "templates/404.html" });
 
 }
