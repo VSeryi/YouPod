@@ -1,4 +1,4 @@
-angular.module("app", [ "ngResource", "ngRoute","satellizer", "ngCookies"]).config(function($authProvider) {
+angular.module("app", [ "ngResource", "ngRoute","ngCookies","satellizer"]).config(function($authProvider) {
 
     $authProvider.facebook({
     	url: '/user/facebook',
