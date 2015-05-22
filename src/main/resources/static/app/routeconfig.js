@@ -11,6 +11,7 @@ function RouteConfig($routeProvider) {
 	$routeProvider.when('/we', { templateUrl : "templates/we.html" });
 	$routeProvider.when('/faq', { templateUrl : "templates/faq.html" });
 	$routeProvider.when('/setting', { templateUrl : "templates/setting.html" });
+	$routeProvider.when('/perfil', { templateUrl : "templates/perfil.html" });
 	$routeProvider.otherwise('/404', { templateUrl : "templates/404.html" });
 
 }
