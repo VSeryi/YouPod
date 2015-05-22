@@ -1,0 +1,66 @@
+
+<div id="content" ng-controller="ViewController as vm">
+	<!--  <div id="videobackground">
+				<video loop autoplay>
+					<source src="img/slides/4.mp4" />
+					
+				</video>
+			</div>-->
+	<div>
+
+
+		<div class="jumbotron">
+			<center>
+				<h1>{{vm.title}}</h1>
+			</center>
+			<div class="row">
+				<div class="col-6 ">
+					<img ng-src="{{vm.thumbail}}" class="sample shadow-z-2 img-view">
+				</div>
+				<div class="col-6 text-view ">
+					<br>{{vm.description}}
+					<div class="row">
+						<div class="col-4 ">
+							<p>
+								<a ng-href="{{vm.download}}" class="btn btn-primary descarga-view">Descargar</a>
+							</p>
+						</div>
+						<div class="col-4">
+							<p>
+								<span class= type-view>{{vm.type}}</span>
+							</p>
+						</div>
+						<div class="col-4">
+							<p>
+								<a class="btn btn-primary descarga-view">Incluir</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		$.material.init();
+		$('#content').blurjs({
+			source : '#content',
+			radius : 30,
+			overlay : 'rgba(0, 0, 0, .2)'
+		});
+
+		$(document).ready(function() {
+			$(".select").dropdown({
+				"optionClass" : "withripple"
+			});
+		});
+		$().dropdown({
+			autoinit : "select"
+		});
+
+	});
+</script>

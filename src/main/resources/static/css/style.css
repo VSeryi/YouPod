@@ -1407,3 +1407,24 @@ iframe {
 .dropdownjs:after {	
 	content: "\e6b5";
 }
+
+/*==========================================================*/
+/* MVIEW
+/*==========================================================*/
+
+.img-view{
+	width: 100%
+}
+
+.text-view{
+
+	font-size:2em;
+	line-height:40px;
+}
+.descarga-view{
+	font-size:1.3em;
+}
+.type-view{
+	font-size:1.6em;
+	
+}
