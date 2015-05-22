@@ -1,10 +1,12 @@
 angular.module("app").controller("LastnewsController", LastnewsController);
 
-LastnewsController.$inject = ["$resource","$scope", "$auth"];
+LastnewsController.$inject = ["$resource","$scope", "$auth", "SessionService"];
 
-function LastnewsController($resource,$scope, $auth) {
+function LastnewsController($resource,$scope, $auth, SessionService) {
 
 	var vm = this;
+	
+	vm.logged = SessionService.isLogged();
 	
 	//View model properties
 	

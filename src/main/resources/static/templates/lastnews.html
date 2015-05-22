@@ -125,7 +125,7 @@
 		<div class="isotope isotope-4 row">
 
 			<!-- Portfolio item -->
-			<article class="portfolio isotope-item buildings design col-3">
+			<article ng-show="vm.logged && vm.nacional.length>0" ng-repeat= "music in vm.nacional" class="portfolio isotope-item buildings design col-3">
 				<a href="" class="image"
 					style="background-image: url(img/portfolio-images/1.jpg)"></a>
 				<div class="inner">
@@ -140,6 +140,9 @@
 						</a>
 				</div>
 			</article>
+			<div ng-hide="vm.logged" class="well well-lg">
+  				  Registrate para estar actualizado de lo que escuchan tus amigos.
+			</div>
 		</div>
 
 	</div>
