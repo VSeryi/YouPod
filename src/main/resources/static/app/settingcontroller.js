@@ -1,6 +1,6 @@
 angular.module("app").controller("SettingController", SettingController);
 
-SignupController.$inject = ["$resource","$scope", "$auth","$location"];
+SignupController.$inject = ["$resource","$scope", "$auth","userService","$location"];
 
 function SettingController($resource,$scope, $auth,userService,$location) {
 
@@ -21,16 +21,6 @@ function SettingController($resource,$scope, $auth,userService,$location) {
 	
 	vm.updateUser = function(user) {
 		userService.updateUser(user);
-	}
-	var editarPerfil = $resource('/user/:id/edit', {
-		id : '@id'},
-		{update : {method : "PUT"}
-		
-		});
-	
-	vm.editPerfil = function(user) {
-		new editarPerfil(vm.user).$update;
-		//perfilService.editar(user);
 	}
 	
 };
