@@ -56,10 +56,10 @@
 					</form>
 					<hr>
 					<button class="btn btn-block btn-facebook"
-						ng-click="authenticate('facebook')">Registrarse con
+						ng-click="vm.loginSocial('facebook')">Registrarse con
 						Facebook</button>
 					<button class="btn btn-block btn-google-plus"
-						ng-click="authenticate('google')">Registrarse con Google</button>
+						ng-click="vm.loginSocial('google')">Registrarse con Google</button>
 					</p>
 				</div>
 			</article>
@@ -71,20 +71,20 @@
 						<h3>Â¿Ya tienes cuenta?</h3>
 					</header>
 					<p>
-					<form ng-submit="" class="form-horizontal">
+					<form ng-submit="vm.loginUser(vm.user)" class="form-horizontal">
 						<fieldset>
 							<div class="form-group">
 								<label for="inputEmail" class="col-lg-2 control-label">Email</label>
 								<div class="col-lg-10">
 									<input type="email" class="form-control" id="inputEmail"
-										placeholder="Email" required>
+										placeholder="Email" ng-model= "vm.user.email"required>
 								</div>
 							</div>
 							<div class="form-group">
 								<label for="inputPassword" class="col-lg-2 control-label">Contraseña:</label>
 								<div class="col-lg-10">
 									<input type="password" class="form-control" id="inputPassword"
-										placeholder="Password" required>
+										placeholder="Password" ng-model= "vm.user.password" required>
 								</div>
 							</div>
 							<div class="form-group">
@@ -96,9 +96,9 @@
 					</form>
 					<hr>
 					<button class="btn btn-block btn-facebook"
-						ng-click="authenticate('facebook')">Login con Facebook</button>
+						ng-click="vm.loginSocial('facebook')">Login con Facebook</button>
 					<button class="btn btn-block btn-google-plus"
-						ng-click="authenticate('google')">Login con Google</button>
+						ng-click="vm.loginSocial('google')">Login con Google</button>
 					</p>
 				</div>
 			</article>

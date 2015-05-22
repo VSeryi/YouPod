@@ -81,6 +81,7 @@
 				<li><a href="#faq">FAQ</a></li>
 				<li><a href="#/we">Nosotros</a></li>
 				<li><a href="#/contact">Contacto</a></li>
+				<li><a ng-show="vm.logged" href="#/" ng-click="vm.logout()">Salir</a></li>
 			</ul>
 		</nav>
 	</div>
@@ -112,7 +113,7 @@
 		src="bower_components/bootstrap-material-design/dist/js/material.js"></script>
 	<script
 		src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
-	<script src="bower_components/satellizer/satellizer.min.js"></script>
+	<script src="bower_components/satellizer/satellizer.js"></script>
 
 
 	<script

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,6 +30,16 @@ public class UserRestController {
 	@Autowired
 	private UserRepository userRepository;
 	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<Integer> getMusic(@RequestParam String email,@RequestParam String password ) {
+		List<User> users =  userRepository.findByEmail(email);
+		if(!users.isEmpty()){
+			if(users.get(0).getPassword().equals(password))
+				return new ResponseEntity<>(users.get(0).getId(), HttpStatus.OK);
+		}
+		return new ResponseEntity<>(-1, HttpStatus.NOT_ACCEPTABLE);
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public User getUser(@PathVariable int id) {
 		return userRepository.findOne(id);
@@ -37,14 +48,10 @@ public class UserRestController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<User> addUser(@RequestBody User usuario) {
-		System.out.println("Usuario: " + usuario.getEmail());
-		System.out.println("Password: " + usuario.getPassword());
 		if (userRepository.findByEmail(usuario.getEmail()).isEmpty()){
-			System.out.println("guardado");
 			userRepository.save(usuario);
 			return new ResponseEntity<>(usuario, HttpStatus.CREATED);
 		}else{
-			System.out.println("no guardado");
 			return new ResponseEntity<>(usuario, HttpStatus.NOT_ACCEPTABLE);
 		}
 		}
@@ -54,13 +61,11 @@ public class UserRestController {
 		User facebook = new User(readClientId(json),1);
 		String clientId = readClientId(json);
 		if (userRepository.findByFacebookId(clientId).isEmpty()) {
-			System.out.println("guardaduco ole");
 			userRepository.save(facebook);
 			return new ResponseEntity<>(facebook, HttpStatus.CREATED);
 		}
 		else {
-			System.out.println("no guardaduco");
-			return new ResponseEntity<>(facebook, HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(facebook, HttpStatus.OK);
 		}
 	}
 	
@@ -69,13 +74,11 @@ public class UserRestController {
 		User google = new User(readClientId(json),0);
 		String clientId = readClientId(json);
 		if (userRepository.findByGoogleId(clientId).isEmpty()) {
-			System.out.println("Reven");
 			userRepository.save(google);
 			return new ResponseEntity<>(google, HttpStatus.CREATED);
 		}
 		else  {
-			System.out.println("No reven no party");
-			return new ResponseEntity<>(google, HttpStatus.NOT_ACCEPTABLE);
+			return new ResponseEntity<>(google, HttpStatus.OK);
 		}
 	}
 	
