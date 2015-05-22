@@ -13,11 +13,18 @@
 				<form ng-submit="vm.convertLink()">
 					<div class="form-group">
 						<input type="url" class="form-control" ng-model="vm.link"
-							placeholder="Full Youtube link like: https://www.youtube.com/watch?v=TrEk96vX8_Q" required>
+							placeholder="Full Youtube link like: https://www.youtube.com/watch?v=TrEk96vX8_Q"
+							required>
 					</div>
+					<select ng-model="vm.type" class="select dropdownjs form-control"
+						placeholder="Tipo de Canción">
+						<option value="Nacional">Nacional</option>
+						<option value="Internacional" selected>Internacional</option>
+						<option value="Banda Sonora">Banda Sonora</option>
+					</select>
+
 					<p>
-						<button type="submit" 
-													class="btn btn-primary">Convertir</button>
+						<button type="submit" class="btn btn-primary">Convertir</button>
 					</p>
 				</form>
 			</center>
@@ -62,12 +69,24 @@
 </div>
 
 <script>
-	$(document).ready(function() {
-		$.material.init();
-		$('#content').blurjs({
-	        source: '#content',
-	        radius: 30,
-	        overlay: 'rgba(0, 0, 0, .2)'
-	    });
-	});
+	$(document)
+			.ready(
+					function() {
+						$.material.init();
+						$('#content').blurjs({
+							source : '#content',
+							radius : 30,
+							overlay : 'rgba(0, 0, 0, .2)'
+						});
+
+						$(document).ready(function() {
+							$(".select").dropdown({
+								"optionClass" : "withripple"
+							});
+						});
+						$().dropdown({
+							autoinit : "select"
+						});
+						
+					});
 </script>

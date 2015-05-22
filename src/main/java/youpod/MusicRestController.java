@@ -72,6 +72,8 @@ public class MusicRestController {
 		      BufferedReader rdInfo = new BufferedReader(new InputStreamReader(isInfo, Charset.forName("UTF-8")));
 		      String jsonTextDownload = readAll(rdDownload);
 		      String jsonTextInfo = readAll(rdInfo);
+		      System.out.println(jsonTextDownload);
+		      System.out.println(jsonTextInfo);
 		      JSONObject jsonDownload = new JSONObject(jsonTextDownload);
 		      JSONObject jsonInfo = new JSONObject(jsonTextInfo);
 		      String link = (String) jsonDownload.get("link");

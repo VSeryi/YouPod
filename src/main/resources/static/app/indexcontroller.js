@@ -8,6 +8,7 @@ function IndexController($resource, $scope, $auth) {
 
 	// View model properties
 	vm.link = "";
+	vm.type = "Nacional";
 	vm.downloading = false;
 	vm.loading = false;
 	vm.loaded = false;
@@ -27,7 +28,8 @@ function IndexController($resource, $scope, $auth) {
 			link : '@link'
 		});
 		vm.music = Music.get({
-			youtubeLink : vm.link
+			youtubeLink : vm.link,
+			type : vm.type
 		}, function() {
 			vm.loading = false;
 			vm.loaded = true;

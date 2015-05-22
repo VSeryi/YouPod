@@ -1394,7 +1394,7 @@ article.personal-profile .inner h4 {
 	.col-1 {
 		width: 8.33333333%;
 	}
-	
+}
 	/*==========================================================*/
 /* Map
 /*==========================================================*/
@@ -1403,5 +1403,7 @@ iframe {
   border: none !important;
   display: block;
 }
-	
+
+.dropdownjs:after {	
+	content: "\e6b5";
 }
