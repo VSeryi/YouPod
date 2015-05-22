@@ -144,75 +144,36 @@ public class MusicRestController {
 	}
 	
 	@RequestMapping(value = "/nacional", method = RequestMethod.GET)
-	public ResponseEntity<List<NacionalMusic>> getMusicNacional() {
+	public List<NacionalMusic> getMusicNacional() {
 		List<NacionalMusic> listaN = new ArrayList<NacionalMusic>();
 		List<NacionalMusic> lista2 = nacionalRepository.findAll();
 		int i = lista2.size()-1;
 		while((i>=0)&&(i>=lista2.size()-4)){
-			listaN.add(lista2.get(i));
-			i--;
+			listaN.add(lista2.get(i));	
 		}
-		return new ResponseEntity<>(listaN, HttpStatus.CREATED);
+		return listaN;
 	}
 	
 	@RequestMapping(value = "/internacional", method = RequestMethod.GET)
-	public ResponseEntity<List<InternacionalMusic>> getMusicInternacional() {
+	public List<InternacionalMusic> getMusicInternacional() {
 		List<InternacionalMusic> listaI = new ArrayList<InternacionalMusic>();
 		List<InternacionalMusic> lista2 = interRepository.findAll();
 		int i = lista2.size()-1;
 		while((i>=0)&&(i>=lista2.size()-4)){
-			listaI.add(lista2.get(i));
-			i--;
+			listaI.add(lista2.get(i));	
 		}
-		return new ResponseEntity<>(listaI, HttpStatus.CREATED);
+		return listaI;
 	}
 	
 	@RequestMapping(value = "/bandassonarasmusic", method = RequestMethod.GET)
-	public ResponseEntity<List<BandasSonarasMusic>> getBandasSonarasMusic() {
+	public List<BandasSonarasMusic> getBandasSonarasMusic() {
 		List<BandasSonarasMusic> listaB = new ArrayList<BandasSonarasMusic>();
 		List<BandasSonarasMusic> lista2 = bsRepository.findAll();
 		int i = lista2.size()-1;
 		while((i>=0)&&(i>=lista2.size()-4)){
-			listaB.add(lista2.get(i));
-			i--;
+			listaB.add(lista2.get(i));	
 		}
-		return new ResponseEntity<>(listaB, HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value = "/nac", method = RequestMethod.GET)
-	public ResponseEntity<List<NacionalMusic>> getNacional() {
-		List<NacionalMusic> listaNac = new ArrayList<NacionalMusic>();
-		List<NacionalMusic> lista2 = nacionalRepository.findAll();
-		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaNac.add(lista2.get(i));
-			i--;
-		}
-		return new ResponseEntity<>(listaNac, HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value = "/inter", method = RequestMethod.GET)
-	public ResponseEntity<List<InternacionalMusic>> getInternacional() {
-		List<InternacionalMusic> listaInter = new ArrayList<InternacionalMusic>();
-		List<InternacionalMusic> lista2 = interRepository.findAll();
-		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaInter.add(lista2.get(i));
-			i--;
-		}
-		return new ResponseEntity<>(listaInter, HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value = "/son", method = RequestMethod.GET)
-	public ResponseEntity<List<BandasSonarasMusic>> getSonoras() {
-		List<BandasSonarasMusic> listaBandas = new ArrayList<BandasSonarasMusic>();
-		List<BandasSonarasMusic> lista2 = bsRepository.findAll();
-		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaBandas.add(lista2.get(i));
-			i--;
-		}
-		return new ResponseEntity<>(listaBandas, HttpStatus.CREATED);
+		return listaB;
 	}
 	
 	private static String readAll(Reader rd) throws IOException {

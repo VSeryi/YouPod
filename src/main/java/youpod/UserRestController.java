@@ -5,7 +5,6 @@ package youpod;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -46,41 +45,7 @@ public class UserRestController {
 		return userRepository.findOne(id);
 	}
 	
-	@RequestMapping(value = "/{id}/friends", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> getUsers(@PathVariable int id) {
-		List<User> listaUsuarios = new ArrayList<User>();
-		User usuario = userRepository.findOne(id);
-		for (Integer i: usuario.getFriends()) {
-			listaUsuarios.add(userRepository.findOne(i));
-		}
-		return new ResponseEntity<>(listaUsuarios, HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value = "/{id}/add", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> getAdd(@PathVariable int id) {
-		List<User> listaUsuarios = new ArrayList<User>();
-		User usuario = userRepository.findOne(id);
-		listaUsuarios.add(userRepository.findOne(usuario.getId()+1));
-		return new ResponseEntity<>(listaUsuarios, HttpStatus.CREATED);
-	}
 
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	public ResponseEntity<List<User>> getDelete(@PathVariable int id) {
-		List<User> listaUsuarios = new ArrayList<User>();
-		User usuario = userRepository.findOne(id);
-		listaUsuarios.remove(userRepository.findOne(usuario.getId()));
-		return new ResponseEntity<>(listaUsuarios, HttpStatus.CREATED);
-	}
-	@RequestMapping(value = "/{id}/edit", method = RequestMethod.PUT)
-	public ResponseEntity<List<User>> getEdit(@PathVariable int id,@RequestBody User usuario) {
-		List<User> listaUsuarios = new ArrayList<User>();
-		User usuario2 = userRepository.findOne(id);
-		usuario2.setEmail(usuario.getEmail());
-		usuario2.setPassword(usuario.getPassword());
-		listaUsuarios.add(userRepository.findOne(usuario.getId()+1));
-		return new ResponseEntity<>(listaUsuarios, HttpStatus.CREATED);
-	}
-	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<User> addUser(@RequestBody User usuario) {
 		if (userRepository.findByEmail(usuario.getEmail()).isEmpty()){
