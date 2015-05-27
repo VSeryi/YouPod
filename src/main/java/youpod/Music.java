@@ -18,6 +18,9 @@ package youpod;
 		private String download;
 		private String type;
 
+		public Music() {
+		}
+
 		public Music(String title, String description, String thumbail, String download, String type) {
 			this.thumbail = thumbail;
 			this.title = title;

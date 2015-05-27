@@ -1,33 +1,43 @@
 angular.module("app").controller("SignupController", SignupController);
 
-SignupController.$inject = [ "$resource", "$scope", "$auth", "userService",
-		"$location" ];
+SignupController.$inject = ["$resource","$scope", "$auth","blogmanager"];
 
-function SignupController($resource, $scope, $auth, userService, $location) {
+function SignupController($resource,$scope, $auth) {
 
 	var vm = this;
-
-	// View model properties
+	
+	var users = [];
+	
+	//View model properties
+	vm.link = "";
+	vm.downloading = false;
+	vm.loading = false;
+	vm.loaded = false;
 	vm.newUser = {};
-	vm.user = {};
-
-	// Controller logic
-
+	
+	//Controller logic
+	
 	$scope.authenticate = function(provider) {
-		$auth.authenticate(provider);
-	};
+      		$auth.authenticate(provider);
+    	};
+	
+	//Controller actions
 
-	vm.addUser = function(newUser) {
-		userService.addUser(newUser);
+	vm.convertLink = function() {
+		vm.downloading = true;
+		vm.loading = true;
+		var SimpleMusic = $resource('/video/:link', {
+			link : '@link'
+		});
+		vm.music = SimpleMusic.get({youtubeLink : vm.link}, function(){
+			vm.loading = true;
+			vm.loaded = true;
+		});
+	};
+	
+	vm.addUser = function (newUser) {
+		blogmanager.newUser(newUser);
 		vm.newUser = {};
+		$location.path("/");
 	};
-	
-	vm.loginUser = function(user) {
-		userService.loginUser(user);
-		vm.user = {};
-	};
-	
-	vm.loginSocial = function(provider) {
-			userService.loginSocial(provider);
-	    };
-	  };
+};

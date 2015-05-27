@@ -20,20 +20,17 @@
 			<article ng-show="vm.nac.length>0" ng-repeat="music in vm.nac"
 				class="portfolio isotope-item buildings design col-3">
 				<a href="" class="image"
-					style="background-image: url(img/portfolio-images/1.jpg)"></a>
+					ng-style="{'background-image':'url({{music.thumbail}})'}"></a>
 				<div class="inner">
 					<header>
-						<h3>{{music.tittle}}</h3>
-						<a ng-href="music.link" class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
+						<h3>{{music.title}}</h3>
+						<a ng-href="{{music.download}}" class="btn btn-small btn-default"
+							style="width: 100%; margin: 0;"> <i href="#"
 							class="fa fa-arrow-down fa-3"></i>
-						</a> <a class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
-							class="fa fa-plus fa-3"></i>
 						</a>
 				</div>
 			</article>
-			<div ng-hide="vm.nac.lenght===0" class="well well-lg">Aun no
+			<div ng-show="vm.nac.length<1" class="well well-lg">Aun no
 				tienes canciones nacionales</div>
 		</div>
 
@@ -50,23 +47,20 @@
 		<div class="isotope isotope-4 row">
 
 			<!-- Portfolio item -->
-			<article ng-show="vm.inte.length>0" ng-repeat="music in vm.inter"
+			<article ng-show="vm.inter.length>0" ng-repeat="music in vm.inter"
 				class="portfolio isotope-item buildings design col-3">
 				<a href="" class="image"
-					style="background-image: url(img/portfolio-images/1.jpg)"></a>
+					ng-style="{'background-image':'url({{music.thumbail}})'}"></a>
 				<div class="inner">
 					<header>
-						<h3>{{music.tittle}}</h3>
-						<a ng-href="music.link" class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
+						<h3>{{music.title}}</h3>
+						<a ng-href="{{music.download}}" class="btn btn-small btn-default"
+							style="width: 100%; margin: 0;"> <i href="#"
 							class="fa fa-arrow-down fa-3"></i>
-						</a> <a class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
-							class="fa fa-plus fa-3"></i>
 						</a>
 				</div>
 			</article>
-			<div ng-hide="vm.inter.lenght===0" class="well well-lg">Aun no
+			<div ng-show="vm.inter.length<1" class="well well-lg">Aun no
 				tienes canciones internacionales</div>
 		</div>
 
@@ -86,20 +80,17 @@
 			<article ng-show="vm.son.length>0" ng-repeat="music in vm.son"
 				class="portfolio isotope-item buildings design col-3">
 				<a href="" class="image"
-					style="background-image: url(img/portfolio-images/1.jpg)"></a>
+					ng-style="{'background-image':'url({{music.thumbail}})'}"></a>
 				<div class="inner">
 					<header>
-						<h3>{{music.tittle}}</h3>
-						<a ng-href="music.link" class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
+						<h3>{{music.title}}</h3>
+						<a ng-href="{{music.download}}" class="btn btn-small btn-default"
+							style="width: 100%; margin: 0;"> <i href="#"
 							class="fa fa-arrow-down fa-3"></i>
-						</a> <a class="btn btn-small btn-default"
-							style="width: 50%; margin: 0;"> <i href="#"
-							class="fa fa-plus fa-3"></i>
 						</a>
 				</div>
 			</article>
-			<div ng-hide="vm.son.lenght===0" class="well well-lg">Aun no
+			<div ng-show="vm.son.length<1" class="well well-lg">Aun no
 				tienes bandas sonoras</div>
 		</div>
 
@@ -115,127 +106,49 @@
 					<p>
 						<!-- Main content -->
 					<div class="row">
-						<div class="col-4">
+						<div ng-show="vm.amigos.length>0" ng-repeat="friend in vm.amigos"
+							class="col-4">
 							<div class="list-group-item">
 								<div class="row-picture">
 									<img class="circle" src="http://lorempixel.com/56/56/people/7"
 										alt="icon">
 								</div>
 								<div class="row-content">
-									<h6 class="list-group-item-heading">Tile with avatar</h6>
-									<p class="list-group-item-text">Donec id elit non mi porta
-										gravida at eget metus</p>
-									<button type="submit" class="btn btn-primary">Borrar
-										Amigo</button>
+									<h6 class="list-group-item-heading">{{friend.email}}</h6>
+									<p class="list-group-item-text">Ha descargado
+										{{friend.music.length}} canciones.</p>
+									<a ng-click="vm.deleteAmigos(friend.id)"
+										class="btn btn-primary">Borrar Amigo </a>
 								</div>
 							</div>
 						</div>
-						<div class="col-4">
-							<div class="list-group-item">
-								<div class="row-picture">
-									<img class="circle" src="http://lorempixel.com/56/56/people/4"
-										alt="icon">
-								</div>
-								<div class="row-content">
-									<h6 class="list-group-item-heading">Tile with avatar</h6>
-									<p class="list-group-item-text">Donec id elit non mi porta
-										gravida at eget metus</p>
-									<button type="submit" class="btn btn-primary">Borrar
-										Amigo</button>
-								</div>
-							</div>
+						<div ng-hide="vm.amigos.length>0" class="col-4">Agrega
+							amigos para empezar a compartir tus experiencias.</div>
+					</div>
+					<div class="row">
+						<div class="col-10">
+							<h3>Añade un nuevo amigo</h3>
+							<form class="form-horizontal" ng-submit="vm.addAmigos(vm.user)">
+								<fieldset>
+									<div class="form-group">
+										<label for="inputEmail" class="col-lg-2 control-label">Email</label>
+										<div class="col-lg-10">
+											<input type="email" class="form-control" id="inputEmail"
+												placeholder="Email" ng-model="vm.user.email" required>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="col-lg-10 col-lg-offset-2">
+											<button type="submit" class="btn btn-primary">Añadir
+												Amigo</button>
+										</div>
+									</div>
+								</fieldset>
+							</form>
 						</div>
-						<div class="col-4">
-							<div class="list-group-item">
-								<div class="row-picture">
-									<img class="circle" src="http://lorempixel.com/56/56/people/10"
-										alt="icon">
-								</div>
-								<div class="row-content">
-									<h6 class="list-group-item-heading">Tile with avatar</h6>
-									<p class="list-group-item-text">Donec id elit non mi porta
-										gravida at eget metus</p>
-									<button type="submit" class="btn btn-primary">Borrar
-										Amigo</button>
-								</div>
-							</div>
-						</div>
-						</p>
-
-						<p>
-							<!-- Main content -->
-						<div class="row2">
-							<div class="col-4">
-								<div class="list-group-item">
-									<div class="row-picture">
-										<img class="circle" src="http://lorempixel.com/56/56/people/9"
-											alt="icon">
-									</div>
-									<div class="row-content">
-										<h6 class="list-group-item-heading">Tile with avatar</h6>
-										<p class="list-group-item-text">Donec id elit non mi porta
-											gravida at eget metus</p>
-										<button type="submit" class="btn btn-primary">Borrar
-											Amigo</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-4">
-								<div class="list-group-item">
-									<div class="row-picture">
-										<img class="circle" src="http://lorempixel.com/56/56/people/8"
-											alt="icon">
-									</div>
-									<div class="row-content">
-										<h6 class="list-group-item-heading">Tile with avatar</h6>
-										<p class="list-group-item-text">Donec id elit non mi porta
-											gravida at eget metus</p>
-										<button type="submit" class="btn btn-primary">Borrar
-											Amigo</button>
-									</div>
-								</div>
-							</div>
-							<div class="col-4">
-								<div class="list-group-item">
-									<div class="row-picture">
-										<img class="circle" src="http://lorempixel.com/56/56/people/2"
-											alt="icon">
-									</div>
-									<div class="row-content">
-										<h6 class="list-group-item-heading">Tile with avatar</h6>
-										<p class="list-group-item-text">Donec id elit non mi porta
-											gravida at eget metus</p>
-										<button type="submit" class="btn btn-primary">Borrar
-											Amigo</button>
-									</div>
-								</div>
-							</div>
-							</p>
-							<div class="row3">
-								<div class="col-10">
-									<h3>Añade un nuevo amigo</h3>
-									<form class="form-horizontal"
-										ng-submit="vm.addAmigos(vm.amigo)">
-										<fieldset>
-											<div class="form-group">
-												<label for="inputEmail" class="col-lg-2 control-label">Email</label>
-												<div class="col-lg-10">
-													<input type="email" class="form-control" id="inputEmail"
-														placeholder="Email" ng-model="vm.amigo.email" required>
-												</div>
-											</div>
-											<div class="form-group">
-												<div class="col-lg-10 col-lg-offset-2">
-													<button type="submit" class="btn btn-primary">Añadir
-														Amigo</button>
-												</div>
-											</div>
-										</fieldset>
-									</form>
-								</div>
-							</div>
-							</p>
-						</div>
+					</div>
+					</p>
+				</div>
 			</article>
 		</div>
 
@@ -249,8 +162,7 @@
 						<h3>Edita tu perfil</h3>
 					</header>
 					<p>
-						<a ng-href="#/setting" class="btn btn-primary">Editar
-							Perfil</a>
+						<a ng-href="#/setting" class="btn btn-primary">Editar Perfil</a>
 						<script>
 							$(document).ready(function() {
 								$.material.init();
@@ -261,3 +173,4 @@
 								});
 							});
 						</script>
+						</div>

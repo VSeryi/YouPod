@@ -16,18 +16,22 @@ public class User {
 
 	private String email;
 	private String password;
-	private boolean activate;
 	private ArrayList<Integer> friends;
-	private ArrayList<Integer> music;
+	private ArrayList<Integer> nacional;
+	private ArrayList<Integer> internacional;
+	private ArrayList<Integer> bs;
 	private String facebookId;
 	private String googleId;
 
 	public User() {
 		friends = new ArrayList<>();
-		music = new ArrayList<>();
+		nacional = new ArrayList<>();
+		internacional = new ArrayList<>();
+		bs = new ArrayList<>();
 	}
 
 	public User(String email, String password) {
+		super();
 		this.email = email;
 		this.password = password;
 	}
@@ -39,6 +43,30 @@ public class User {
 		} else {
 			this.facebookId = socialId;
 		}
+	}
+
+	public ArrayList<Integer> getNacional() {
+		return nacional;
+	}
+
+	public void setNacional(ArrayList<Integer> nacional) {
+		this.nacional = nacional;
+	}
+
+	public ArrayList<Integer> getInternacional() {
+		return internacional;
+	}
+
+	public void setInternacional(ArrayList<Integer> internacional) {
+		this.internacional = internacional;
+	}
+
+	public ArrayList<Integer> getBs() {
+		return bs;
+	}
+
+	public void setBs(ArrayList<Integer> bs) {
+		this.bs = bs;
 	}
 
 	public Integer getId() {
@@ -65,13 +93,7 @@ public class User {
 		this.password = password;
 	}
 
-	public boolean isActivate() {
-		return activate;
-	}
-
-	public void setActivate(boolean activate) {
-		this.activate = activate;
-	}
+	
 
 	public Iterable<Integer> getFriends() {
 		return friends;
@@ -81,12 +103,23 @@ public class User {
 		this.friends = friends;
 	}
 
-	public Iterable<Integer> getMusic() {
-		return music;
+	public boolean addMusicNacional(Integer music) {
+		return this.nacional.add(music);
 	}
-
-	public boolean addMusic(Integer music) {
-		return this.music.add(music);
+	
+	public boolean addMusicInter(Integer music) {
+		return this.internacional.add(music);
+	}
+	public boolean addMusicBs(Integer music) {
+		return this.bs.add(music);
+	}
+	
+	public boolean addFriend(Integer friend) {
+		return this.friends.add(friend);
+	}
+	
+	public boolean removeFriend(Integer friend) {
+		return this.friends.remove(friend);
 	}
 
 	public String getFacebookId() {

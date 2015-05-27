@@ -41,12 +41,13 @@ public class MusicRestController {
 	
 	@Autowired
 	private BandasSonarasMusicRepository bsRepository;
+	
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Music convertLink(@RequestParam String youtubeLink, @RequestParam String type)
+	public ResponseEntity<Music> convertLink(@RequestParam String youtubeLink, @RequestParam String type)
 			throws IOException {
 		String id = "";
-		Music music = Music();
+		Music music = new Music();
         String[] params = youtubeLink.split("\\?");
         if(params.length==2) {
                 String[] keyValuePairs = params[1].split("&");
@@ -72,8 +73,6 @@ public class MusicRestController {
 		      BufferedReader rdInfo = new BufferedReader(new InputStreamReader(isInfo, Charset.forName("UTF-8")));
 		      String jsonTextDownload = readAll(rdDownload);
 		      String jsonTextInfo = readAll(rdInfo);
-		      System.out.println(jsonTextDownload);
-		      System.out.println(jsonTextInfo);
 		      JSONObject jsonDownload = new JSONObject(jsonTextDownload);
 		      JSONObject jsonInfo = new JSONObject(jsonTextInfo);
 		      String link = (String) jsonDownload.get("link");
@@ -81,6 +80,8 @@ public class MusicRestController {
 		      JSONObject snippet = (JSONObject)((JSONObject) videoData.get(0)).get("snippet");
 		      String title = (String) snippet.get("title");
 		      String description = (String) snippet.get("description");
+		      if(description.length()>254)
+		    	  description = description.substring(0, 254);
 		      JSONObject thumbail = (JSONObject)((JSONObject) snippet.get("thumbnails")).get("high");
 		      String url = (String) thumbail.get("url");
 			  music = new Music(title, description, url, link, type);
@@ -91,16 +92,29 @@ public class MusicRestController {
 		    	isInfo.close();
 		    }
 		}while(error);
-		return music;
+		return new ResponseEntity<>(music, HttpStatus.CREATED);
 	}
 
-	private Music Music() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Music> addMusic(@RequestBody Music music) {
+		if (music.getType().equals("Nacional")){
+			NacionalMusic musica = new NacionalMusic(music);
+			nacionalRepository.save(musica);
+		}else{
+			if (music.getType().equals("Internacional")){
+				InternacionalMusic musi = new InternacionalMusic (music);
+				interRepository.save(musi);
+			}else{
+				BandasSonarasMusic mu = new BandasSonarasMusic (music);
+				bsRepository.save(mu);
+			}
+		}
+		return new ResponseEntity<>(music, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/{id}",method = RequestMethod.POST)
+	public ResponseEntity<Music> addMusic(@PathVariable int id, @RequestBody Music music) {
 		if (music.getType() == "Nacional"){
 			NacionalMusic musica = new NacionalMusic(music);
 			nacionalRepository.save(musica);
@@ -181,38 +195,38 @@ public class MusicRestController {
 	
 	@RequestMapping(value = "/nac", method = RequestMethod.GET)
 	public ResponseEntity<List<NacionalMusic>> getNacional() {
-		List<NacionalMusic> listaNac = new ArrayList<NacionalMusic>();
+		List<NacionalMusic> listaB = new ArrayList<NacionalMusic>();
 		List<NacionalMusic> lista2 = nacionalRepository.findAll();
 		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaNac.add(lista2.get(i));
+		while((i>=0)&&(i<lista2.size())){
+			listaB.add(lista2.get(i));
 			i--;
 		}
-		return new ResponseEntity<>(listaNac, HttpStatus.CREATED);
+		return new ResponseEntity<>(listaB, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/inter", method = RequestMethod.GET)
 	public ResponseEntity<List<InternacionalMusic>> getInternacional() {
-		List<InternacionalMusic> listaInter = new ArrayList<InternacionalMusic>();
+		List<InternacionalMusic> listaB = new ArrayList<InternacionalMusic>();
 		List<InternacionalMusic> lista2 = interRepository.findAll();
 		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaInter.add(lista2.get(i));
+		while((i>=0)&&(i<lista2.size())){
+			listaB.add(lista2.get(i));
 			i--;
 		}
-		return new ResponseEntity<>(listaInter, HttpStatus.CREATED);
+		return new ResponseEntity<>(listaB, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "/son", method = RequestMethod.GET)
 	public ResponseEntity<List<BandasSonarasMusic>> getSonoras() {
-		List<BandasSonarasMusic> listaBandas = new ArrayList<BandasSonarasMusic>();
+		List<BandasSonarasMusic> listaB = new ArrayList<BandasSonarasMusic>();
 		List<BandasSonarasMusic> lista2 = bsRepository.findAll();
 		int i = lista2.size()-1;
-		while((i>=0)&&(i>=lista2.size()-10)){
-			listaBandas.add(lista2.get(i));
+		while((i>=0)&&(i<lista2.size())){
+			listaB.add(lista2.get(i));
 			i--;
 		}
-		return new ResponseEntity<>(listaBandas, HttpStatus.CREATED);
+		return new ResponseEntity<>(listaB, HttpStatus.CREATED);
 	}
 	
 	private static String readAll(Reader rd) throws IOException {
